@@ -388,10 +388,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   priorityText: {
-    fontSize: 16,
-    fontWeight: '500',
-    color: '#333',
-    marginLeft: 8,
+    fontSize: 17
   },
   dateText: {
     fontSize: 16,
