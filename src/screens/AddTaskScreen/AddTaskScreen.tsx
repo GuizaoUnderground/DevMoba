@@ -7,11 +7,17 @@ import { CreateTaskData } from '@/src/types';
 import { router } from 'expo-router';
 import React from 'react';
 import { Alert, StyleSheet } from 'react-native';
+import EasterEgg from '../../../../components/EasterEgg';
 
 export const AddTaskScreen: React.FC = () => {
   const { createTask } = useTaskContext();
+  const [showEasterEgg, setShowEasterEgg] = useState(false);
 
   const handleFormSubmit = async (taskData: CreateTaskData) => {
+    if (taskData.priority === 'low' && Math.random() < 0.15) {
+      setShowEasterEgg(true);
+    }
+    
     await createTask(taskData);
   };
 
@@ -32,6 +38,10 @@ export const AddTaskScreen: React.FC = () => {
     );
   };
 
+  const closeEasterEgg = () => {
+    setShowEasterEgg(false);
+  };
+
   return (
     <PageTemplate
       title=""
@@ -39,7 +49,7 @@ export const AddTaskScreen: React.FC = () => {
       keyboardAvoiding
     >
       <ThemedView style={styles.header}>
-        
+
         <ThemedText type="title">Nova Tarefa</ThemedText>
         <ThemedText style={styles.subtitle}>
           Preencha os detalhes da sua nova tarefa
@@ -49,6 +59,11 @@ export const AddTaskScreen: React.FC = () => {
       <TaskForm
         onSubmit={handleFormSubmit}
         onSuccess={handleFormSuccess}
+      />
+
+      <EasterEgg 
+        isVisible={showEasterEgg} 
+        onClose={closeEasterEgg} 
       />
     </PageTemplate>
   );

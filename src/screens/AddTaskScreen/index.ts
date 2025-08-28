@@ -1,1 +1,1 @@
-export * from './AddTaskScreen';
+export { AddTaskScreen } from './AddTaskScreen';
